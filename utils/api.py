@@ -6,7 +6,8 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from utils.cutom_exception import RequestFailException, AuthenticationFailureException
-from utils.file_utils import get_api_public_key
+from utils.file_utils import get_api_public_key, get_request_timeout
+
 
 def requests_retry_session(
     retries=3,
@@ -34,7 +35,7 @@ class CheckStatusCode:
 
     def __call__(self, *args, **kwargs):
         if 'timeout' not in kwargs:
-            kwargs["timeout"] = 5
+            kwargs["timeout"] = get_request_timeout() or 30
         need_raw_content = kwargs.pop("need_raw_content", False)
         # print("upload", kwargs)
         result = self.func(*args, **kwargs)

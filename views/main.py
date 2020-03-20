@@ -73,14 +73,14 @@ class MainWindow(QMainWindow, LoadingView):
             return
         self.select_file_path = file_path
         pixmap = QPixmap(self.select_file_path)
+        self.ui.removeBGLabel.clear()
+        self.remove_bg_image = None
+        self.design_bg_image = None
         self.ui.originLabel.setPixmap(pixmap.scaled(self.ui.originLabel.size(), QtCore.Qt.KeepAspectRatio))
         if self.is_no_remove:
             self.remove_bg_image = Image.open(self.select_file_path)
             self.show_design_photo()
-        else:
-            self.ui.removeBGLabel.clear()
-            self.remove_bg_image = None
-            self.self.design_bg_image = None
+
 
     @error_capture(need_info=True)
     def removeBackgroundAction(self, *args, **kwargs):
