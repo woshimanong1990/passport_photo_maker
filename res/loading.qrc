@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="123">
+    <file>images/91.gif</file>
+    <file>images/810.gif</file>
+  </qresource>
+</RCC>
